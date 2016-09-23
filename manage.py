@@ -6,6 +6,11 @@ if __name__ == "__main__":
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_tutorial.settings")
     try:
         from django.core.management import execute_from_command_line
+        from dotenv import Dotenv
+        dotenv = Dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+        os.environ.update(dotenv)
+    except IOError:
+        print "No .env file in root directory"
     except ImportError:
         # The above import may fail for some other reason. Ensure that the
         # issue is really that Django is missing to avoid masking other
